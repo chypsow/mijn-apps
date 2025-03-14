@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+}
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif;
+    font-size: 0.8em;
+    /*background:  linear-gradient(150deg, #b6b4b4 10% ,#aebcd6de 40%, #98b8ca 90%);*/
+    /*background: linear-gradient(150deg, #302ddd 10% ,#2f9e41 30%, #3d23cf 80%);*/
+    background: linear-gradient(150deg, #ebebeb 10% ,#ebebebde 40%, #9b9b9b 90%);
+    color: #3f3e3e;
+    
+    
+    /*background: linear-gradient(150deg, #8887e4 10% ,#466075 30%, #3d3c6d 80% );*/
+    background-size: cover;
+    background-attachment: fixed;
+}
+header {
+    background-color: #354568cb;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    height: 3em;
+    border-bottom:1px solid #3a3a3a;
+    box-shadow: -5px 8px 7px rgba(105, 123, 160, 0.692);
+}
+header h1 {
+    font-size: 3em;
+    display: inline;
+    color: #c5c5c5;
+}
+header img {
+    position: absolute;
+    top: 10px;
+    left: 85%;
+    width: 10em;
+}
+
+
+/*inpu-section*/
+.input-section {
+    margin: 20px;
+}
+.input-section label {
+    display: inline-block;
+    margin-right: 7px;
+    font-weight: bold;
+   
+}
+.input-section input {
+    margin-right: 60px;
+    margin-bottom: 20px;
+    padding: 0.2em 0.4em;
+}
+.input-title a {
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0.4em 0.6em;
+    background-color: #e6e5e5;
+    color: #020202;
+    border: 1px solid gray;
+    margin-left: 20px;
+}
+.input-title a:first-of-type{
+    margin-left: 102px;
+}   
+.input-title a:last-of-type {
+    
+    margin-left: 140px;
+}
+.input-title a:first-of-type:hover {
+    background: #41a11bb0;
+    border: 1px solid transparent;
+    color: #d0dfd6;
+}
+.input-title a:last-of-type:hover {
+    background: #9e0404;    
+    border: 1px solid transparent;
+    color: #e4e4e4;
+}
+/*input-title*/
+#titles-container{
+    border: none;
+    margin-left: 100px;
+    margin-top: 20px;
+}
+
+#row2 input {
+    padding: 0.2em 0.4em;
+    
+}
+.data-table {
+    width: 6em;
+    padding: 0.2em 0.4em;
+    text-align: center;
+    padding: 0.2em  0em 0.2em 0.9em;
+}
+
+    
+
+/**/
+.links button {
+    cursor: pointer;
+    margin-left: 20px;
+    margin-top: 40px;
+    background: #474747;
+    color: #ececec;
+    padding: 5px 10px;
+    /*border-radius: 5px;*/
+}
+.rechts button {
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 20px;
+    background: #474747;
+    color: #ececec;
+    padding: 5px 10px;
+    /*border-radius: 5px;*/
+}
+button:hover:not([disabled]){
+    border: 2px solid rgb(228, 227, 227);
+}
+
+.series table {
+    border: none;
+    /*border-collapse: collapse;*/
+    margin: 20px;
+}
+/*.series table,  .series th, .series td {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}*/
+.series th, .series td {
+    width: 6em;
+    padding: 0.1em;
+    text-align: center;
+}
+.series td {
+    text-align: left;
+}
+.rechts {
+    float: left;
+}
+.links {
+    
+    float: left;
+}
+.keuzeChart {
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 1.1em;
+}
+.keuzeChart label {
+    font-weight: bold;
+}
+.keuzeChart select {
+    padding: 0.3em 0.5em;
+    margin: 10px;
+    width: 7em;
+}
+#grafiek-container {
+    margin: 20px;
+    background: rgb(255, 255, 255);
+    border-radius: 7px;
+}
+#grafiek {
+    margin: 0 auto;
+    min-width: 1050px;
+}
+.checkB {
+    display: inline;
+}
+.checkB label {
+    padding: 0 0.5em;
+    font-weight: bold;
+}
+.checkB input {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+button[disabled] {
+    background-color: #d4d4d4;
+    cursor: default;
+    color: #7a7a7a;
+
+}

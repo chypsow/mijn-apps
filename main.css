@@ -1,0 +1,245 @@
+body {
+    /*background: linear-gradient(150deg, #302ddd 10% ,#2f9e41 30%, #3d23cf 80%  );*/
+    background-image: url("images/chemie.png");
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    
+}
+*{
+    margin: 0;
+}
+.wrapper {
+    
+    margin:  0 auto;
+    width: 40%;
+}
+header {
+    padding-top: 1em;
+    background-color: #354568cb;
+    height: 2em;
+    
+}
+.andere-links {
+    list-style-type: none;
+    float: right;
+    margin-right: 2em;
+}
+.andere-links p {
+    color: #b9bfd491;
+    display: inline;
+    margin-right: 2em;
+}
+.andere-links li a {
+    display: inline;
+    padding: 0.4em;
+    
+}
+.andere-links li {
+    float: right;
+    
+}
+.andere-links li:not(:first-of-type) {
+    border-right: 1px solid #b9bfd491;;
+}
+.andere-links li a {
+    text-decoration: none;
+    color: #b9bfd491;
+}
+.andere-links li a:hover {
+    color: #d8dce4d2;;
+    /*text-decoration: underline;*/
+    
+}
+.clearFix:before, .clearFix:after {
+    content: " ";
+    display: table;
+}
+.clearFix:after {
+    clear: both;
+}
+.sectie1 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    font-size: 1.2em;
+    border-radius: 5px;
+    background: #363636e5;
+    margin-top: 3em;
+    padding: 1em;
+    
+    min-height: 15em;
+}
+.uitkomst {
+    padding: 0.4em 0.8em;
+    background: #2acce27e;/*#e22a617e;*/
+    color: rgb(247, 247, 247);
+    border-radius: 5px;   
+}
+.uitkomst.rood {
+    background: #e22a3993;/*#e22a617e;*/
+    color: rgb(250, 45, 45);
+}
+.uitkomst:empty {
+    background: transparent;
+}
+.input-sectie input {
+    background-color: #313131;
+    color: #cacaca;
+    text-align: center;
+    font-family: 'Georgia', sans-serif;
+    /*font-feature-settings: "onum"; /* Voor old-style cijfers */
+    /*margin-right: 0.4em;*/
+    width: 10em;
+    outline: none;
+    font-size: 1em;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    padding: 0.4em;
+    transition: all 0.20s ease-in-out;
+    /*font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;*/
+}
+.input-sectie input:focus,
+.input-sectie input:hover{
+    box-shadow: 0 0 15px rgba(238, 238, 238, 0.9);
+}
+.input-sectie p {
+    display: flex;
+    justify-content: center;   /* Centreer horizontaal binnen de p-tag */
+    align-items: center;       /* Centreer verticaal binnen de p-tag */
+    gap: 20px;                  /* Ruimte tussen #mm en #details */
+    margin-top: 2em;
+}
+.sectie-wrapper {
+    margin-top: 1em;
+    position: relative;
+}
+#reset {
+    position: absolute;          /* Zet het icoon in een vaste positie */
+    left: 75%;                    /* Plaats het icoon rechts binnen .output-container */
+    top: 50%;
+    padding: 8px 30px;
+    outline: none;
+    border: none;
+    background: #00000063;
+    color: #b3b3b3 ;
+    border-radius: 5px;
+    transform: translateY(-50%);
+    transition: all 0.1s ease-in-out;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 16px;
+}
+#reset:hover {
+    cursor: pointer;
+    /*box-shadow: 0 0 15px rgba(238, 238, 238, 0.9);*/
+    background: #ffffff;
+    color: rgb(2, 2, 2);
+    font-weight: bold;
+}
+.uitkomst-wrapper {
+    /*display: flex;
+    justify-content: center;    /* Centreer alleen het <span> in de wrapper */
+    position: relative;
+    margin-top: 2em;
+    /*text-align: center;*/
+}
+
+.input-sectie button {
+    font-size: 1em;
+    padding: 0.1em 0.9em;
+}
+.info {
+    display: flex;
+    position: absolute;
+    left: 75%;
+    top: 50%;
+    transform: translateY(-50%);
+    gap: 20px;
+}
+.short {
+    font-size: 10px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    align-content: center;
+}
+.fa-info {
+              /* Zet het icoon in een vaste positie */
+    
+     /* Centreert het icoon verticaal op dezelfde lijn */
+    cursor: pointer;
+    padding: 0.3em 0.7em;
+    font-size: 0.9em;
+    border-radius: 100px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(49, 49, 49);
+}
+.fa-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #727272;
+    font-size: 20px;
+    font-weight: normal;
+    transition: 0.3s;
+}
+.fa-close:hover {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.788)
+}
+/* Donkere achtergrond voor modaal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1;
+}  
+.modal-overlay.open {
+    /*display: block;*/
+    opacity: 1;
+}
+.modal {
+    font-size: 1.3em;
+    font-family: monospace;
+    display: none; /* Verborgen standaard */
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    min-width: 400px;
+    padding: 40px;
+    background-color: rgb(31, 31, 31);
+    color: #a3a8eb;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    z-index: 2;
+    transform: translate(-50%, -50%) scale(0); /* Start klein, gecentreerd */
+    animation: zoom 0.3s forwards; /* Gebruik forwards om animatie op het einde te bewaren */
+}
+.modal-header {
+    /*cursor: move;  Geeft visueel aan dat het element gesleept kan worden */
+    
+    margin: 0;
+    padding: 5px;
+}
+@keyframes zoom {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+    }
+    /*80% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }*/
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+.modal h3 {
+    margin-top: 0;
+}
+
+.no-selection {
+    user-select: none;
+}

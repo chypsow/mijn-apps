@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="main.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Molar Mass</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header>
+        <ul class="andere-links" >
+            <p><b>Andere links : </b></p>
+            <li><a href="/Horloge/oclock2.html" target='_blank'>Horloge</a></li>
+            <li><a href="/Personal Finance Tracker/finance.html" target='_blank'>Personal finance tracker</a></li>
+            <li><a href="/Lening calculator/lening.html" target='_blank'>Lening simulator</a></li>
+            <li><a href="/Graphic template/grafiekTemplate.html" target='_blank'>Grafiek generator</a></li>
+            <li><a href="/Formaline opslag/formaline.html" target='_blank'>Formaline opslag</a></li>
+        </ul>
+    </header>
+    <div class="wrapper">
+        <div class="sectie1">
+            <h1>Molecuulmassa calculator</h1>
+            <div class="input-sectie">
+                <p>Voer chemische formule in (bv. H2O):</p>
+                <div class="sectie-wrapper">
+                    <input type="text" id="formule">
+                    <button id="reset" onclick="reset()">RESET</button>
+                    
+                </div>
+                <div class="uitkomst-wrapper">
+                    <span id="mm" class="uitkomst"></span>
+                    <div class="info">
+                        <i id="details" class="fa fa-info" title="Berekeningsdetails bekijken" style="display: none;"></i>
+                        <span class="short" style="display: none;">CTRL + d</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal-overlay" class="modal-overlay">
+            <div id="modal" class="modal no-selection">
+                <i class="fa fa-close" id="sluiten"></i>
+                <h3 class="modal-header">Berekeningsdetails voor</h3>
+                <br>
+                <ul id="calculation-details"></ul>
+                <!--<button onclick="closeModal()">Sluiten</button>-->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,407 @@
+<html lang="nl">
+
+<head>
+    <title>Oclock2</title>
+    <!--<script src="oclock.js" defer></script>-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        
+body {
+    display: flex;
+    width: 98%;
+    height: 92vh;
+    /*background-color: rgba(107, 107, 107, 0.3);*/
+    background-image: url("images/bg1.png");
+    /*background: linear-gradient(150deg, #302ddd 10% ,#1d1b8d 30%, #3d23cf 80%  );*/
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+}
+.numClock-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 4em;
+    /*position: absolute;
+    top: 2%;
+    left: 700px;*/
+    width: 300px;
+    height: 100px;
+    background: linear-gradient(150deg, #8a8aa1 10% ,#020207 30%, #414141 80%  );
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+  
+#numClock {
+    font-family: Arial, sans-serif;
+    font-size: 3rem;
+    color: #9e9e9e;
+    font-weight: bold;
+}
+.p1 {
+    position: relative;
+    width: 385px;
+    height: 385px;
+    border-radius: 50%;
+    padding: 50px;
+    background-color: rgba(133, 133, 133, 0.8);
+    /*background: linear-gradient(to right,rgb(58, 17, 243),rgb(86, 56, 170));*/
+    box-shadow: 0px 0px 20px black;
+    /*overflow: hidden;*/
+
+}
+.p2 {
+    position: absolute;
+    top: 11%;
+    left: 11%;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    /*border: 1px solid white;*/
+    z-index: 1;
+}
+.streep {
+    position: absolute;
+    top: 50%;
+    border-bottom: 2px solid rgb(0, 0, 0);
+    width: 100%;
+}
+.streep:nth-of-type(5n+2) {
+    border-bottom: 5px solid rgb(0, 0, 0);
+}
+.p3 {
+    position: absolute;
+    top: 4%;
+    left: 4%;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 20px rgb(114, 114, 114);
+    background: radial-gradient(circle,rgb(207, 207, 207),rgb(0, 0, 0));
+    z-index: 1;
+}
+.number {
+    position: absolute;
+    font-size: 2.4rem;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    width: 45px;
+    /*border: 1px solid rgb(157, 142, 197);
+    border-radius: 50%;*/
+    text-align: center;
+}
+.centre1 {
+    position: absolute;
+    top: 48.5%;
+    left: 50%;
+    padding: 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(99, 99, 99);
+    transform: translateX(-50%);
+    z-index: 1;
+}   
+.centre2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgb(31, 31, 31);
+    z-index: 1;
+}
+.aiguilles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform-origin: 0%;
+    transform: rotate(-90deg);
+    /*transition-timing-function: ease-in-out;
+    transition: transform 0.5s;*/
+}
+.heure {
+    width: 30%;
+    height: 10px;
+    background: linear-gradient(to left,rgb(36, 36, 36),rgb(153, 153, 153));
+    /*z-index: 1;*/
+}
+.minute {
+    width: 40%;
+    height: 10px;
+    background: linear-gradient(to left,rgb(41, 41, 41),rgb(143, 143, 143));
+    /*z-index: 2;*/
+}
+.seconde {
+    width: 50%;
+    height: 3px;
+    background: rgba(197, 0, 0, 0.6);
+    /*z-index: 3;*/
+}    
+@keyframes rot3 {
+    from{
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes rot2 {
+    from{
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes rot1 {
+    from{
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}
+.button-container {
+    display: flex;
+    gap: 20px;
+}
+#start {
+    top: 5%;
+    left: 400px;
+}
+#pauze {
+    top: 5%;
+    left: 550px;
+}
+#stop {
+    top: 5%;
+    left: 700px;
+}
+.button {
+background: linear-gradient(135deg, #535353, #5a5a5a);
+color: rgb(219, 219, 219);
+padding: 15px 30px;
+text-transform: uppercase;
+font-size: 16px;
+
+border: none;
+border-radius: 10px;
+position: absolute;
+overflow: hidden;
+transition: transform 0.3s ease;
+cursor: pointer;
+}
+.button::before {
+content: '';
+position: absolute;
+top: 0;
+left: -75%;
+width: 100%;
+height: 100%;
+background: rgba(255, 255, 255, 0.3);
+transform: skewX(-19deg);
+transition: left 0.5s ease;
+}
+.button:hover::before {
+left: 150%;
+}
+.button:hover {
+transform: scale(1.05);
+}
+.keuze-modus {
+    
+    position: absolute;
+    top: 15%;
+    left: 400px;
+    color: rgb(160, 160, 160);
+}
+label {
+    cursor: pointer;
+    padding: 0.9em;
+}
+label:hover {
+    text-decoration: underline;
+}
+
+/*.button-1 {
+background-color: #4CAF50;
+color: white;
+border: none;
+padding: 15px 30px;
+text-transform: uppercase;
+font-size: 16px;
+border-radius: 50px;
+transition: background-color 0.3s ease, box-shadow 0.3s ease;
+cursor: pointer;
+}
+
+.button-1:hover {
+background-color: #45a049;
+box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}*/
+
+    </style>
+
+<body>
+    <!--Buttons-->
+    <div class="button-container">
+        <button id="start" onclick = "updaten();" class="button">Start</button>
+        <button id="pauze" onclick = "pauzeren();" class="button">Pauze</button>
+        <button id="stop" onclick = "stoppen();" class="button">Stop</button>
+    </div>
+    <div class="keuze-modus">
+        <label for="standard"><input type="radio" name="mode" id="standard" value="standard" checked>Standard</label><br><br>
+        <label for="fluent"><input type="radio" name="mode" id="fluent" value="fluent">Fluent</label><br><br>
+        <label for="extra" hidden><input type="radio" name="mode" id="extra" value="extra-fluent">Extra fluent</label>
+    </div>
+    <!--Numeric clock-->
+    <div class="numClock-container">
+        <div id="numClock">00:00:00</div>
+    </div>
+
+    <!--Analogic clock-->
+    <div class="p1">
+        <!-- Numéros -->
+        <div class="number" style="top: 0%; left: 50%; transform: translateX(-50%);">12</div>
+        <div class="number" style="top: 6.5%; left: 68%;">1</div>
+        <div class="number" style="top: 23%; left: 84%;">2</div>
+        <div class="number" style="top: 50%; left: 90%; transform: translateY(-50%);">3</div>
+        <div class="number" style="top: 68%; left: 84%;">4</div>
+        <div class="number" style="top: 84.5%; left: 68%;">5</div>
+        <div class="number" style="top: 91%; left: 50%; transform: translateX(-50%);">6</div>
+        <div class="number" style="top: 84.5%; left: 23%;;">7</div>
+        <div class="number" style="top: 68%; left: 6%;">8</div>
+        <div class="number" style="top: 50%; left: 0%; transform: translateY(-50%);">9</div>
+        <div class="number" style="top: 23%; left: 6%;">10</div>
+        <div class="number" style="top: 6%; left: 23%; ">11</div>
+        <div id="p2" class="p2">
+            <div class="p3">
+                <!--aiguilles-->    
+                <div class="centre1"><div class="centre2"></div></div>
+                <div class="aiguilles heure" id="heures"></div>
+                <div class="aiguilles minute" id="minutes"></div>
+                <div class="aiguilles seconde" id="secondes"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const p2 = document.getElementById("p2");
+        maakStreepjes();
+        function maakStreepjes() {
+            //let hoek = 0;
+            for(let i=0; i<30; i++) {
+                const myDiv = document.createElement("div");
+                myDiv.classList.add("streep");
+                myDiv.style.transform = `rotate(${i*6}deg)`;
+                p2.appendChild(myDiv);
+                //hoek += 6;
+            }
+        }
+        const modus = document.getElementsByName("mode");
+        const secondHand = document.getElementById('secondes');
+        const minuteHand = document.getElementById('minutes');
+        const hourHand = document.getElementById('heures');
+        const aiguilles = [secondHand,minuteHand,hourHand];
+        for(const element of modus) {
+            element.onchange = function() {
+                switch (element.value) {
+                    case 'standard' :
+                        /*for(const elt of aiguilles) {
+                            elt.style.animation = '';
+                        }*/
+                        secondHand.style.transition = '';
+                        //updaten();
+                        break;
+                    case 'fluent' :
+                        /*for(const elt of aiguilles) {
+                            elt.style.animation = '';
+                        }*/
+                        secondHand.style.transition = 'transition-timing-function: ease-in-out';
+                        secondHand.style.transition = 'transform 0.5s';
+                        //updaten();
+                        break;
+                    case 'extra-fluent' :
+                        clearInterval(t2);
+                        t2 = null;
+                        updateClockNeedle();
+                        for(const elt of aiguilles) {
+                            elt.style.transition = '';
+                        }
+                        hourHand.style.animation = 'rot1 216000s linear infinite';
+                        minuteHand.style.animation = 'rot2 3600s linear infinite';
+                        secondHand.style.animation = 'rot3 60s linear infinite';
+
+                }
+            }
+        };
+        
+        let t1 = null;
+        let t2 = null;
+        function updaten(){
+            if((t1 === null || t2 === null) && modus[2].checked === false) {
+                t1 = setInterval(updateClockNum, 1000);
+                t2 = setInterval(updateClockNeedle, 1000);
+                updateClockNum();
+                updateClockNeedle();
+            }
+        }
+
+        function pauzeren(){
+            if(t1 !== null) {
+                if (document.getElementById("start").innerText === "START") {
+                document.getElementById("start").innerText = "RESUME";
+                }
+            }
+            clearInterval(t1);
+            clearInterval(t2);
+            t1 = null;
+            t2 = null;
+
+            
+        }
+        function stoppen() {
+            clearInterval(t1);
+            clearInterval(t2);
+            t1 = null;
+            t2 = null;
+            const secondHand = document.getElementById('secondes');
+            const minuteHand = document.getElementById('minutes');
+            const hourHand = document.getElementById('heures');
+            secondHand.style.transform = 'rotate(-90deg)';
+            minuteHand.style.transform = 'rotate(-90deg)';
+            hourHand.style.transform = 'rotate(-90deg)';
+            const clockElement = document.getElementById('numClock');
+            clockElement.textContent = '00:00:00';
+            if (document.getElementById("start").innerText === "RESUME") {
+                document.getElementById("start").innerText = "START";
+            }
+        }
+
+        function updateClockNum() {
+        const clockElement = document.getElementById('numClock');
+        const now = new Date();
+        const hoursNum = String(now.getHours()).padStart(2, '0');
+        const minutesNum = String(now.getMinutes()).padStart(2, '0');
+        const secondsNum = String(now.getSeconds()).padStart(2, '0');
+
+        clockElement.textContent = `${hoursNum}:${minutesNum}:${secondsNum}`;
+        }
+
+        function updateClockNeedle() {
+            const now = new Date();
+
+            const seconds = now.getSeconds();
+            const minutes = now.getMinutes();
+            const hours = now.getHours();
+      
+            // Calculate degrees for each needle
+            const secondDeg = ((seconds / 60) * 360) - 90; // Offset by 90 degrees to start from 12 o'clock
+            const minuteDeg = ((minutes / 60) * 360) + ((seconds / 60) * 6) - 90;
+            const hourDeg = ((hours / 12) * 360) + ((minutes / 60) * 30) - 90;
+            // Set the transform property to rotate the needles
+            secondHand.style.transform = `rotate(${secondDeg}deg)`;
+            minuteHand.style.transform = `rotate(${minuteDeg}deg)`;
+            hourHand.style.transform = `rotate(${hourDeg}deg)`;
+        }
+    </script>
+</body>
+
+</html>

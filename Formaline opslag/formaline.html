@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="formaline.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formaline opslag</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="formaline.css">
+</head>
+
+<body>
+    <header>
+        <h1>Formaline opslag</h1>
+        <img src="images/synthomer.svg" alt="synthmer">
+    </header>
+    <div class="wrapper">
+        <div class="boven">
+            <div class="boven1">
+                <p id="inputText">Gew.% Concentratie :</p>
+                <input type="number" step="any" id="inputValue">
+                <div id="output" class="uitkomst"></div>
+                <p id="outputText">Opslag temp. in °C :</p>
+                <div id="switchen" onclick="switchen();" class="fa fa-exchange" title="Omwisselen"></div>
+            </div>
+            <div class="boven2">
+                <span id="fout" hidden></span>
+                <span id="minOfMax">Minimum</span>
+            </div>
+        </div>
+        <section>
+            <div class="links">
+                <canvas id="myChart" width="350" height="450"></canvas>
+                <canvas id="myChart2" width="350" height="450" style="display: none;"></canvas>
+            </div>
+            <div class="midden">
+                <select id="keuzeBerekening">
+                    <option value="water">Toe te voegen water berekenen:</option>
+                    <option value="concentratie">Concentratie berekenen:</option> 
+                </select>
+                <label for="huidig">Huidige concentratie (wt%) :
+                <input type="number" step="any" id="huidig"></label><br>
+                <label for="volume">Volume in de tank (m³) :
+                <input type="number" step="any" id="volume"></label><br>
+                <label for="meting">Temp. van de tank (°C) :
+                <input type="number" step="any" id="meting"></label><br>
+                <label for="densiteit">Berekende dichtheid (kg/m³) :
+                <input id="densiteit" disabled></label><br>
+                <label for="hoeveel">Berekende hoeveelheid (ton) :
+                <input id="hoeveel" disabled></label><br>
+                <label for="gewenst" id="choice">Gewenste concentratie (wt%):
+                <input type="number" step="any" id="gewenst" oninput="Berekenen();"></label><br><br>
+                <hr style="border-color: black;"><br>
+                <div id="resultaat" class="uitkomst"></div>
+                <p>Toe te voegen water (ton):</p>
+            </div>
+            
+        </section>
+    </div>
+    <footer>
+        <P>All Copyrights Reserved &copy; POWERED BY WALID ATTI</P>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

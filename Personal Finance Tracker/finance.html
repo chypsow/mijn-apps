@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="finance.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="finance.css">
+    
+</head>
+<body>
+    <h1>Personal Finance Tracker</h1>
+    <div id="finance-tracker" class="clearFix">
+    <div class="left-column">
+        <!-- Transactie Invoer -->
+        <div class="transaction-entry">
+            <h2>Nieuwe Transactie</h2>
+            <label>Bedrag<br><input type="number" id="amount" class="group" placeholder="Bedrag"></label>
+            <div class="radio-btn">
+                <p>Type : 
+                <label for="expens"><input id="expens" type="radio" name="type" checked>Uitgaven</label>
+                <label for="inkom"><input id="inkom" type="radio" name="type">Inkomsten</label></p>
+            </div>
+            
+            <label>Categorie <br>
+            <select id="category" class="group">
+                
+            </select></label>
+            <span id="add" onclick="showAddCategory();">Add new category</span>
+            <label>Datum<br><input type="date" id="date" class="group"></label>
+            <!--<i id="add" class="fa fa-plus" onclick="showAddCategory();" title="Add new category"></i>-->
+            <button onclick="addTransaction()">Toevoegen</button>
+        </div>
+        <div class="transaction-overview">
+            <!-- Overzicht van Transacties -->
+            <h2>Transacties</h2>
+            <ul id="transaction-list"></ul>
+        </div> 
+    </div>
+        <div class="overview-grafiek">
+            <div class="overview">  
+                <!-- Maandelijkse Samenvatting -->
+                
+                <h2>Samenvatting</h2>
+                <div id="summary"></div>
+            </div> 
+            <br>  
+            <div class="grafiek">
+                <h2>Uitgaven per Categorie</h2>
+                <canvas id="expenseChart" width="400" height="400"></canvas>
+            </div> 
+        </div>
+
+    </div>
+    
+    <div id="modal-overlay" class="modal-overlay">
+        <div id="modal" class="modal">
+            <i class="fa fa-close" id="sluiten" onclick="closeModal()"></i>
+            <div id="overlay"></div>
+        </div>
+    </div>
+    <footer>
+        <P>All Copyrights Reserved &copy; POWERED BY WALID ATTI</P>
+    </footer>
+    
+</body>
+</html>

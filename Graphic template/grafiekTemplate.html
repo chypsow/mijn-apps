@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <script src="grafiekTemplate.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geplande vs Afgewerkte werken</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="grafiekTemplate.css">
+    
+</head>
+<body>
+    <header>
+        <h1>Chart Generator</h1>
+        <!--<img src="synthomer.svg" alt="synthmer">-->
+    </header>
+    <div class="wrapper">
+    <div class="links">    
+    <!-- Stap 1: Invoer van start- en einddatum -->
+    <div class="input-section">
+        <label for="start-date">Startdatum:</label>
+        <input type="date" id="start-date">
+        <label for="end-date">Einddatum:</label>
+        <input type="date" id="end-date">
+    </div>
+    <div class="input-title">
+        <div>
+            <a href="#" class="addDelete" onclick="kolomToevoegen()">kolom toevoegen</a>
+            <a href="#" id="delete" class="addDelete" onclick="kolomVerwijderen()" hidden>kolom verwijderen</a>
+        </div>
+        <div id="titles-container">
+            <table>
+                <thead>
+                    <tr id="row1" class="data-thead">
+                        <th>Titel 1</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="row2">
+                        <td><input type="text" class="data-table" id="titel-1" value="A"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <button onclick="generateTable()">Update Tabel</button>
+    <div class="checkB">
+        <input type="checkbox" id="cb"><label for="cb">Auto Fill</label>
+    </div>
+    <button id="autoF" onclick="autoFill()" style="display: none;">Auto Fill</button>
+    <button id="clear" onclick="clearData()" style="display: none;">Clear All</button>
+    <!-- Stap 2: Tabel voor het invoeren van gegevens -->
+    <div class="series" id="day-table-container"></div>
+</div>
+<div class="rechts">
+    <div class="keuzeChart">
+    <label for="chartType">Type grafiek: </label>
+    <select id="chartType">
+        <option value="bar">Bar</option>
+        <option value="line">Line</option>
+        <option value="radar">Radar</option>
+    </select>
+</div>
+    <button id="updateChart" onclick="updateGrafiek()">Update Grafiek</button>
+
+    <div id="grafiek-container">
+        <canvas id="grafiek"></canvas>
+    </div>
+</div>
+</div>
+    
+</body>
+</html>
