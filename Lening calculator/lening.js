@@ -26,7 +26,7 @@ function berekenPmt() {
     const jkp = document.getElementById("jkp").value;
     const periode = document.getElementById("periode").value;
     if(bedrag !== "" && jkp !== "" && periode !== "") {
-        aflossingBtn.disabled = false;
+        aflossingBtn.style.display = '';
         const soort = renteType.value;
         
         const aflossing = maandAflossing(bedrag, jkp, periode, soort);
@@ -38,7 +38,7 @@ function berekenPmt() {
         for(const out of myOutput) {
             out.value = "";
         }
-        aflossingBtn.disabled = true;
+        aflossingBtn.style.display = 'none';
         afdrukken.style.visibility = "hidden";
         myTable.hidden = true;
     }
