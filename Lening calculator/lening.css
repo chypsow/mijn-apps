@@ -70,7 +70,7 @@ position: absolute;
 height: 120px;*/
 background: rgba(255, 255, 255, 0.2);
 border-radius: 50%;
-animation: moveCircles infinite alternate ease-in-out;
+/*animation: moveCircles infinite alternate ease-in-out;*/
 }
 .circle:nth-child(1) { top: 320px; right: 200px; animation-duration: 25s; width: 60px; height: 60px;}
 .circle:nth-child(2) { top: 400px; left: 150px; animation-duration: 29s; width: 120px; height: 120px;}
@@ -95,26 +95,7 @@ body {
     /*background-size: cover;
     background-repeat: no-repeat;*/
 }
-body::before,
-body::after {
-    content: "";
-    position: absolute;
-    background: #fad0c4;
-    border-radius: 50%;
-    opacity: 0.5;
-}
-body::before {
-    width: 200px;
-    height: 200px;
-    top: 50px;
-    left: 20px;
-}
-body::after {
-    width: 100px;
-    height: 100px;
-    top: 270px;
-    right: 200px;
-}
+
 
 .wrapper {
     width: 60%;
