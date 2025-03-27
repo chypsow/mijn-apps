@@ -1,5 +1,13 @@
 "use strict";
 let atomicMasses = [];
+let names = [];
+const modal = document.getElementById("modal");
+const modalOverlay = document.getElementById("modal-overlay");
+const sluiten = document.getElementById("sluiten");
+const mm = document.getElementById("mm");
+const details = document.getElementById("details");
+const formule = document.getElementById("formule");
+
 async function retrieveAtomicMasses()  {
     const response = await fetch("periodicSystem.json");
     if(response.ok) {
@@ -8,10 +16,8 @@ async function retrieveAtomicMasses()  {
             atomicMasses[component.symbol] = component.atomic_mass;
         }
     }
-}
-retrieveAtomicMasses();
+};
 
-let names = [];
 async function retrieveNames() {
   try {
     const response = await fetch("./periodicSystem.json");
@@ -26,17 +32,8 @@ async function retrieveNames() {
   
   } catch (error) {
     console.error("Er is een fout opgetreden:", error.message);
-  }
-  
-}
-retrieveNames();
-
-const modal = document.getElementById("modal");
-const modalOverlay = document.getElementById("modal-overlay");
-const sluiten = document.getElementById("sluiten");
-const mm = document.getElementById("mm");
-const details = document.getElementById("details");
-const formule = document.getElementById("formule");
+  } 
+};
 
 function hideElements() {
   mm.textContent = '';
@@ -57,6 +54,7 @@ function formatFormula(event) {
    match.length === 2 ? match[0].toLowerCase() + match[1].toUpperCase() : match.toUpperCase());
 // Gebruik regex om te checken of elk element met 2 letters (een groot en een klein) bestaat in database anders splitsen in 2 elementen 
   value = value.replace(/([A-Z][a-z])/g, match => atomicMasses[match] ? match : match[0] + match[1].toUpperCase());
+  //value = value.replace("o", "O");
   event.target.value = value;
   calculateMolecularMass(value);
 }
@@ -182,3 +180,8 @@ document.addEventListener('click', (event) => {
 formule.addEventListener("input", formatFormula);
 details.addEventListener('click', openModal);
 sluiten.addEventListener('click', closeModal);
+
+document.addEventListener('DOMContentLoaded', () => {
+  retrieveAtomicMasses();
+  retrieveNames();
+});
