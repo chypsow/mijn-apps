@@ -30,10 +30,10 @@ function berekenPmt() {
         const soort = renteType.value;
         
         const aflossing = maandAflossing(bedrag, jkp, periode, soort);
-        pmt.value = Math.round(aflossing[0]*100)/100 + "   EUR";
-        rentevoet.value = Math.round(aflossing[1]*1000000)/10000 + "   %";
-        periodeInJaar.value = Math.round(periode/12*100)/100 + "   jaar";
-        interesten.value = Math.round((aflossing[0] * periode - bedrag)*100)/100 + "   EUR";
+        pmt.value = Math.round(aflossing[0]*100)/100 + " EUR";
+        rentevoet.value = Math.round(aflossing[1]*1000000)/10000 + " %";
+        periodeInJaar.value = Math.round(periode/12*100)/100 + " jaar";
+        interesten.value = Math.round((aflossing[0] * periode - bedrag)*100)/100 + " EUR";
     } else {
         for(const out of myOutput) {
             out.value = "";

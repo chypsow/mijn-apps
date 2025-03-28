@@ -132,7 +132,6 @@ fieldset {
     /*height: 19em;*/
 }
 input {
-    width: 8em;
     margin: 0.4em 1em;
     padding: 0.2em 0.5em;
     background: #f0f0f0;
@@ -142,12 +141,20 @@ input {
     color: #050505;
     border-radius: 3px;
 }
+input[type="number"] {
+    width: 5.5em;
+}
+input[type="date"] {
+    width: 8em;
+}
 input[type="text"] {
+    width: 8em;
     background: #94939342;
-    font-weight: bold;
     border: none;
-    color: rgba(255, 255, 255, 0.932);
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+    color: rgba(191, 130, 219, 0.932);
+    color: #fad0c485;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Courier New', Courier, monospace;
 }
 .invoer {
     width: 6em;
@@ -188,9 +195,13 @@ label {
     background: linear-gradient(360deg,#303030 10%,#d6d6d6 360%);
     border-radius: 7px;
     color: rgba(241, 241, 241, 0.932);
+    color: rgba(191, 130, 219, 0.932);
+    color: #fad0c485;
 }
 .rechts label {
     color: rgba(228, 228, 228, 0.87);
+    color: rgba(191, 130, 219, 0.932);
+    color: #fad0c485;
 }
 button {
     padding: 0.4em 2em;
