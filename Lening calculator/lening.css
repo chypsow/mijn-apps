@@ -77,7 +77,7 @@ border-radius: 50%;
 .circle:nth-child(3) { top: 275px; right: 200px; animation-duration: 35s; width: 80px; height: 80px;}
 .circle:nth-child(4) { top: 170px; right: 230px; animation-duration: 28s; width: 120px; height: 120px;}
 .circle:nth-child(5) { top: 120px; left: 200px; animation-duration: 33s; width: 100px; height: 100px;}
-.circle:nth-child(6) { top: 370px; right: 430px; animation-duration: 28s; width: 200px; height: 200px; background: #fad0c485;}
+.circle:nth-child(6) { top: 370px; right: 30px; animation-duration: 28s; width: 200px; height: 200px; background: #fad0c485;}
 .circle:nth-child(7) { top: 450px; left: 200px; animation-duration: 31s; width: 100px; height: 100px; background: #fad0c485;}
 
 body {
@@ -152,7 +152,7 @@ input[type="text"] {
     background: #94939342;
     border: none;
     color: rgba(191, 130, 219, 0.932);
-    color: #fad0c485;
+    color: #fde7e1f5;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-family: 'Courier New', Courier, monospace;
 }
@@ -180,7 +180,7 @@ label {
     padding-left: 1em;
     font-size: 1.1em;
     color: rgba(44, 44, 44, 0.87);
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
@@ -196,12 +196,12 @@ label {
     border-radius: 7px;
     color: rgba(241, 241, 241, 0.932);
     color: rgba(191, 130, 219, 0.932);
-    color: #fad0c485;
+    color: #fad0c4ea;
 }
 .rechts label {
     color: rgba(228, 228, 228, 0.87);
     color: rgba(191, 130, 219, 0.932);
-    color: #fad0c485;
+    color: #fad0c4f6;
 }
 button {
     padding: 0.4em 2em;
