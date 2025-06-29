@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Access Tabel Viewer</title>
+  <link rel="stylesheet" href="accessTable.css"> 
+</head>
+<body>
+  <header>
+    <h2>Access Tabel Viewer</h2>
+  </header>
+  
+  <div class="fields">
+    <div class="dropdown" id="dropdown" style="visibility: hidden;">
+      <button class="dropdown-button" id="dropdownButton">Header filters</button>
+      <div class="dropdown-content" id="dropdownContent">
+        <div class="checkbox-list" id="checkboxList"></div>
+        <div class="dropdown-footer">
+          <button id="applyFilter">Apply</button>
+        </div>
+      </div>
+    </div>
+
+    <label class="custom-file-label">
+      Kies een bestand
+      <input type="file" id="fileInput" style="display:none;">
+    </label>
+
+    <input type="text" id="searchInput" placeholder="Zoek in tabel..." autocomplete="off" />
+
+    <select id="records-select"></select>
+      
+    <button onclick="exportToCSV()">Exporteer naar CSV</button>
+  </div>
+  
+  <div id="tableContainer"></div>
+
+<script src="accessTable.js"></script>
+
+</body>
+</html>
