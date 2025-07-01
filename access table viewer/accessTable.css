@@ -47,13 +47,15 @@ header {
     color: #292929;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+    align-content: center;
 }
 .fields button {
+    font-size: 1rem;
     margin-inline: 5px;
-    padding: 5px 10px;
+    padding: 10px 15px;
     border-radius: 5px;
-    background-color: #a00505;
-    color: #ffffff;
+    background-color: #dfca53;
+    color: #000000;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
 }
@@ -61,7 +63,18 @@ header {
     background-color: rgb(39, 39, 39);
     color: white;
 }
+.zoek-plek {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.aantal-records {
+    align-content: center;
+    color: #f9f9f9;
+}
 #applyFilter {
+    padding: 5px 10px;
+    border: 1px solid rgb(170, 170, 170);
     background-color: #ffffff;
     color: #000000;
 }

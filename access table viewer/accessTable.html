@@ -12,8 +12,13 @@
   </header>
   
   <div class="fields">
+    <label class="custom-file-label">
+      Kies een bestand
+      <input type="file" id="fileInput" style="display:none;">
+    </label>
+
     <div class="dropdown" id="dropdown" style="visibility: hidden;">
-      <button class="dropdown-button" id="dropdownButton">Header filters</button>
+      <button class="dropdown-button" id="dropdownButton">Headers filteren</button>
       <div class="dropdown-content" id="dropdownContent">
         <div class="checkbox-list" id="checkboxList"></div>
         <div class="dropdown-footer">
@@ -22,16 +27,14 @@
       </div>
     </div>
 
-    <label class="custom-file-label">
-      Kies een bestand
-      <input type="file" id="fileInput" style="display:none;">
+    <label class="zoek-plek">
+      <input type="text" id="searchInput" placeholder="Zoek in tabel..." autocomplete="off" style="visibility: hidden;"/>
+      <span id="aantal-records" class="aantal-records"></span>
     </label>
-
-    <input type="text" id="searchInput" placeholder="Zoek in tabel..." autocomplete="off" />
-
-    <select id="records-select"></select>
+    
+    <select id="records-select" style="visibility: hidden;"></select>
       
-    <button onclick="exportToCSV()">Exporteer naar CSV</button>
+    <button id="exportCsv" onclick="exportToCSV()" style="visibility: hidden;">Exporteer naar CSV</button>
   </div>
   
   <div id="tableContainer"></div>

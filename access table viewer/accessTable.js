@@ -40,8 +40,11 @@ function handleFile(event) {
         filteredData.records =  getSelectedRecords(recordsRange, selectedIndexes);
         filteredData.headers = headers;
 
+
+
         renderTable(filteredData.records);
         builtHeaderFilter();
+
     };
 
     reader.readAsText(file);
@@ -75,6 +78,8 @@ function renderTable(data) {
             } else if (i === nx795) {
                 html += `<td style="color:${cell < 98.6 ? 'red': 'green'};
                 font-weight:bold;">${cell}</td>`;
+            } else if (i === 0){
+                html += `<td style="color:black;">${cell}</td>`;
             } else {
                 html += `<td>${cell}</td>`;
             }
@@ -94,6 +99,9 @@ function renderTable(data) {
             sortTable(i, data);
         });
     });
+
+    const aantal = document.getElementById('aantal-records');
+    aantal.textContent = `${data.length} records`;
 };
 
 function toggleSortDirection(colIndex) {
@@ -128,6 +136,9 @@ function builtHeaderFilter() {
     //const headers = filteredData.headers;
     const dropdown = document.getElementById('dropdown');
     const button = document.getElementById('dropdownButton');
+    const searchInput = document.getElementById('searchInput');
+    const recordSelect = document.getElementById('records-select');
+    const exportCsv = document.getElementById('exportCsv');
     //const dropdownContent = document.getElementById('dropdownContent');
     let checkboxHTML = `<label><input type="checkbox" value="-1" checked> All</label>`;
     filteredData.headers.forEach( (component, i) => {
@@ -138,6 +149,9 @@ function builtHeaderFilter() {
     document.getElementById('checkboxList').innerHTML = checkboxHTML;
 
     dropdown.style.visibility = 'visible';
+    searchInput.style.visibility = 'visible';
+    recordSelect.style.visibility = 'visible';
+    exportCsv.style.visibility = 'visible';
     const checkboxes = dropdown.querySelectorAll('input[type="checkbox"]');
 
     document.getElementById('applyFilter').addEventListener('click', () => {
@@ -207,22 +221,13 @@ document.getElementById('records-select').addEventListener('change', () => {
     } else {
         renderTable(filteredData.records);
     }
-    /*document.querySelectorAll('.sortCol').forEach((col, i) => {
-        col.onclick = null; // verwijder eerdere event handlers
-        col.addEventListener('click', () => {
-            toggleSortDirection(i);
-            // Altijd opnieuw truncaten zodat de laatste geselecteerde kolommen gebruikt worden
-            //const latestTruncated = filteredData.records.map(record => selectedIndexes.map(f => record[f]));
-            sortTable(i, filteredData.records);
-        });
-    });*/
 });
     
 document.getElementById('searchInput').addEventListener('input', function () {
-    const query = this.value.toLowerCase();
-    const dateIndex = filteredData.headers.indexOf('Datum + Uur');
-    const filtered = globalData.records.filter(row =>
-    row[dateIndex]?.toLowerCase().includes(query)
+    const query = this.value;   //.toLowerCase();
+    //const dateIndex = filteredData.headers.indexOf('Datum + Uur');
+    const filtered = filteredData.records.filter(row => row[0].includes(query)
+    //row[dateIndex]?.toLowerCase().includes(query)
     );
     //const headers = Array.from(document.querySelectorAll('.sortCol .header-text')).map(span => span.textContent);
     renderTable(filtered);
