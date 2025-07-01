@@ -4,21 +4,15 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
-
 body { 
     margin: 20px;
-    /*display: flex;*/
     background: gray;
     color: #e2e2e2;
-    /*flex-direction: column; 
-    align-items: flex-start;
-    gap: 20px;*/
 }
 header {
     background-color: rgb(146, 39, 48);
     padding: 10px;
     text-align: center;
-    /*padding: 10px;*/
     color: #f1f1f1;
     border-radius: 5px;
 }
@@ -29,7 +23,6 @@ header {
     justify-content: space-around;
     flex-direction: row;
 }
-
 .fields select {
     margin-inline: 5px;
     padding: 5px 20px;
@@ -97,7 +90,6 @@ th, td { border: 1px solid #ccc; padding: 6px; text-align: left; }
 th { 
     position: sticky;
     top: 0px;
-    /*font-size: 10px;*/
     background-color: #292929;
     color: rgb(255, 255, 255);
     white-space: nowrap; /* voorkomt afbreken van kolomnamen */
@@ -112,12 +104,6 @@ tr:nth-child(even) { background-color: #cfcfcf; }
     position: relative;
     display: inline-block;
 }
-/*.dropdown-button {
-    background-color: rgb(176, 176, 216);
-    color: #000000;
-    padding: 0 15px;
-    cursor: pointer;
-}*/
 .dropdown-content {
     display: none;
     position: absolute;
@@ -144,7 +130,6 @@ tr:nth-child(even) { background-color: #cfcfcf; }
     display: block;
     margin-bottom: 5px;
 }
-
 .dropdown.open .dropdown-content {
     display: block;
 }

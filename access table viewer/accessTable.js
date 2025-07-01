@@ -36,11 +36,8 @@ function handleFile(event) {
         const recordSelect = document.getElementById('records-select');
         const recordsRange = parseInt(recordSelect.value);
         selectedIndexes = Array.from({ length: numOfCol }, (_, i) => i);
-        //console.log(`selectedindexes: ${selectedIndexes}`);
         filteredData.records =  getSelectedRecords(recordsRange, selectedIndexes);
         filteredData.headers = headers;
-
-
 
         renderTable(filteredData.records);
         builtHeaderFilter();
@@ -52,8 +49,6 @@ function handleFile(event) {
 
 function renderTable(data) {
     document.getElementById('tableContainer').innerHTML = '';
-    //console.log(`headers: ${filteredData.headers}`);
-
     let html = '<table id="dataTable"><thead><tr>';
     filteredData.headers.forEach((h, i) => {
         let arrow = '<span class="sort-arrow"> ▲▼</span>';
@@ -67,8 +62,7 @@ function renderTable(data) {
 
     const tmpd = filteredData.headers.findIndex(f => f === 'TMPD');
     const nx795 = filteredData.headers.findIndex(f => f === 'NX-795 tot' || f === 'NX-795 Tot');
-    //console.log(`TMPD index: ${tmpd}`);
-    //console.log(`NX795 index: ${nx795}`);
+    
     data.forEach(row => {
         html += '<tr>';
         row.forEach((cell, i) => {
@@ -91,9 +85,7 @@ function renderTable(data) {
     
     document.getElementById('tableContainer').innerHTML = html;
 
-    // Gebruik een functie om altijd de actuele data te pakken bij sorteren
     document.querySelectorAll('.sortCol').forEach((col, i) => {
-        //col.onclick = null; // verwijder eerdere event handlers
         col.addEventListener('click', () => {
             toggleSortDirection(i);
             sortTable(i, data);
@@ -105,7 +97,6 @@ function renderTable(data) {
 };
 
 function toggleSortDirection(colIndex) {
-    // Toggle sort direction
     if (currentSort.column === colIndex) {
         currentSort.ascending = !currentSort.ascending;
     } else {
@@ -115,7 +106,6 @@ function toggleSortDirection(colIndex) {
 };
 
 function sortTable(colIndex, data) {
-    //console.log(`colom index: ${colIndex}, first data: ${data[0]}, second data: ${data[1]}`);
     const isDateColumn = filteredData.headers[colIndex] === 'Datum + Uur';
     const sorted = data.sort((a, b) => {
     let valA = a[colIndex];
@@ -125,7 +115,8 @@ function sortTable(colIndex, data) {
         valB = parseDate(valB);
         return currentSort.ascending ? valA - valB : valB - valA;
     } else {
-        return currentSort.ascending ? String(valA).localeCompare(String(valB), 'nl', { numeric: true }) : String(valB).localeCompare(String(valA), 'nl', { numeric: true });
+        return currentSort.ascending ? String(valA).localeCompare(String(valB), 'nl', { numeric: true }) :
+        String(valB).localeCompare(String(valA), 'nl', { numeric: true });
     }
     });
     
@@ -133,14 +124,13 @@ function sortTable(colIndex, data) {
 };
 
 function builtHeaderFilter() {
-    //const headers = filteredData.headers;
     const dropdown = document.getElementById('dropdown');
     const button = document.getElementById('dropdownButton');
     const searchInput = document.getElementById('searchInput');
     const recordSelect = document.getElementById('records-select');
     const exportCsv = document.getElementById('exportCsv');
-    //const dropdownContent = document.getElementById('dropdownContent');
     let checkboxHTML = `<label><input type="checkbox" value="-1" checked> All</label>`;
+
     filteredData.headers.forEach( (component, i) => {
         checkboxHTML += `
             <label><input type="checkbox" value="${i}" checked> ${component}</label>
@@ -152,6 +142,7 @@ function builtHeaderFilter() {
     searchInput.style.visibility = 'visible';
     recordSelect.style.visibility = 'visible';
     exportCsv.style.visibility = 'visible';
+
     const checkboxes = dropdown.querySelectorAll('input[type="checkbox"]');
 
     document.getElementById('applyFilter').addEventListener('click', () => {
@@ -159,29 +150,19 @@ function builtHeaderFilter() {
             .filter(cb => cb.checked)
             .map(cb => parseInt(cb.value))
             .filter(cb => cb >= 0);
-        if(!selectedIndexes.includes(0)) selectedIndexes.unshift(0); // altijd de datum bijpakken
-        //console.log(`selectedindexes: ${selectedIndexes}`);
-        //console.log(`geselecteerde Indices: ${selectedIndexes}`);
+        if(!selectedIndexes.includes(0)) selectedIndexes.unshift(0);
         filteredData.headers = selectedIndexes.map(index => globalData.headers[index]);
-        //console.log(`filtered data: ${filteredData.records}`);
         filteredData.records = getSelectedRecords(document.getElementById('records-select').value, selectedIndexes);
-        //const truncated = filteredData.records.map(record => selectedIndexes.map(i => record[i]));
         if(currentSort.column > filteredData.headers.length) currentSort.column = null;
-
-        //console.log(`headers: ${filteredData.headers}`);
-        //console.log(`truncated data: ${truncated}`);
         renderTable(filteredData.records);
-        // Sluit de dropdown
         dropdown.classList.remove('open');
+        if (searchInput.value !== '') searchInput.value = '';
     });
 
-    
-    //button.hidden = false;
     button.addEventListener('click', () => {
         dropdown.classList.toggle('open');
     });
 
-    // Optioneel: klik buiten dropdown sluit hem
     document.addEventListener('click', (event) => {
         if (!dropdown.contains(event.target)) {
             dropdown.classList.remove('open');
@@ -211,10 +192,6 @@ function builtHeaderFilter() {
 document.getElementById('records-select').addEventListener('change', () => {
     filteredData.records = getSelectedRecords(document.getElementById('records-select').value, selectedIndexes);
     if(filteredData.records.length === 0) return;
-
-    //const headers = Array.from(document.querySelectorAll('.sortCol .header-text')).map(span => span.textContent);
-    //console.log(`records: ${filteredData.records}`);
-    //console.log(`sort column: ${currentSort.column}`);
     if(currentSort.column !== null) {
         const colIndex = currentSort.column;
         sortTable(colIndex, filteredData.records);
@@ -224,12 +201,17 @@ document.getElementById('records-select').addEventListener('change', () => {
 });
     
 document.getElementById('searchInput').addEventListener('input', function () {
-    const query = this.value;   //.toLowerCase();
-    //const dateIndex = filteredData.headers.indexOf('Datum + Uur');
-    const filtered = filteredData.records.filter(row => row[0].includes(query)
-    //row[dateIndex]?.toLowerCase().includes(query)
-    );
-    //const headers = Array.from(document.querySelectorAll('.sortCol .header-text')).map(span => span.textContent);
+    let query = this.value;
+    // Als de query een datum is in de vorm d/m of d/m/, maak alleen maand 0-padded
+    query = query.replace(/^(\d{1,2})\/(\d{1,2})(\/)?$/, (match, d, m, slash) => {
+        const month = m.padStart(2, '0');
+        return slash ? `${d}/${month}/` : `${d}/${month}`;
+    });
+    const filtered = filteredData.records.filter(row => {
+        if (!query) return true;
+        const cell = String(row[0]).toLowerCase();
+        return cell.startsWith(query.toLowerCase());
+    });
     renderTable(filtered);
 });
 
@@ -237,7 +219,6 @@ document.getElementById('fileInput').addEventListener('change', handleFile);
 
 function getSelectedRecords(num, selectedHeaders) {
     if (selectedHeaders.length === 0) {
-        //('geen data');
         return [];
     }
     let filtered = [];
@@ -252,7 +233,6 @@ function getSelectedRecords(num, selectedHeaders) {
             return parsed && parsed >= cutoff;
         });
     }
-    //console.log(`selectedHeaders: ${selectedHeaders}`);
     const filteredAndTruncated = filtered.map(f => selectedHeaders.map(a => f[a]));
     return filteredAndTruncated;
 };
