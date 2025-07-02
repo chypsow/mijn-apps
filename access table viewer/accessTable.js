@@ -12,13 +12,21 @@ let currentSort = {
     ascending: false
 };
 let selectedIndexes = [];
+let alreadyLoaded = false;
+const dropdown = document.getElementById('dropdown');
+const searchInput = document.getElementById('searchInput');
+const recordSelect = document.getElementById('records-select');
+const exportCsv = document.getElementById('exportCsv');
+const applyFilterBtn = document.getElementById('applyFilter');
 
 function handleFile(event) {
     const file = event.target.files[0];
+    const fileNaam = file.name;
     if (!file) return;
 
     const reader = new FileReader();
     reader.onload = (e) => {
+        document.getElementById("fileNaam").textContent = fileNaam;
         const content = e.target.result;
         const blocks = content.split(/-{10,}/).map(b => b.trim()).filter(b => b);
 
@@ -40,8 +48,13 @@ function handleFile(event) {
         filteredData.headers = headers;
 
         renderTable(filteredData.records);
-        builtHeaderFilter();
-
+    
+        if(!alreadyLoaded) {
+            builtHeaderFilter();
+        } else {
+            updateDropdownContent();
+        }
+        alreadyLoaded = true;
     };
 
     reader.readAsText(file);
@@ -124,42 +137,14 @@ function sortTable(colIndex, data) {
 };
 
 function builtHeaderFilter() {
-    const dropdown = document.getElementById('dropdown');
-    const button = document.getElementById('dropdownButton');
-    const searchInput = document.getElementById('searchInput');
-    const recordSelect = document.getElementById('records-select');
-    const exportCsv = document.getElementById('exportCsv');
-    let checkboxHTML = `<label><input type="checkbox" value="-1" checked> All</label>`;
-
-    filteredData.headers.forEach( (component, i) => {
-        checkboxHTML += `
-            <label><input type="checkbox" value="${i}" checked> ${component}</label>
-        `;
-    });
-    document.getElementById('checkboxList').innerHTML = checkboxHTML;
+    updateDropdownContent();
 
     dropdown.style.visibility = 'visible';
     searchInput.style.visibility = 'visible';
     recordSelect.style.visibility = 'visible';
     exportCsv.style.visibility = 'visible';
 
-    const checkboxes = dropdown.querySelectorAll('input[type="checkbox"]');
-
-    document.getElementById('applyFilter').addEventListener('click', () => {
-        selectedIndexes = Array.from(checkboxes)
-            .filter(cb => cb.checked)
-            .map(cb => parseInt(cb.value))
-            .filter(cb => cb >= 0);
-        if(!selectedIndexes.includes(0)) selectedIndexes.unshift(0);
-        filteredData.headers = selectedIndexes.map(index => globalData.headers[index]);
-        filteredData.records = getSelectedRecords(document.getElementById('records-select').value, selectedIndexes);
-        if(currentSort.column > filteredData.headers.length) currentSort.column = null;
-        renderTable(filteredData.records);
-        dropdown.classList.remove('open');
-        if (searchInput.value !== '') searchInput.value = '';
-    });
-
-    button.addEventListener('click', () => {
+    document.getElementById('dropdownButton').addEventListener('click', () => {
         dropdown.classList.toggle('open');
     });
 
@@ -167,6 +152,36 @@ function builtHeaderFilter() {
         if (!dropdown.contains(event.target)) {
             dropdown.classList.remove('open');
         }
+    });
+};
+
+function updateDropdownContent() {
+    let checkboxHTML = `<label><input type="checkbox" value="-1" checked> All</label>`;
+    filteredData.headers.forEach( (component, i) => {
+    checkboxHTML += `
+        <label><input type="checkbox" value="${i}" checked> ${component}</label>
+    `;
+    });
+    document.getElementById('checkboxList').innerHTML = checkboxHTML;
+    const checkboxes = dropdown.querySelectorAll('input[type="checkbox"]');
+
+    let filterBtn = applyFilterBtn;
+    if (alreadyLoaded) {
+        filterBtn.replaceWith(filterBtn.cloneNode(true));
+        filterBtn = document.getElementById('applyFilter');
+    }
+    filterBtn.addEventListener('click', () => {
+        selectedIndexes = Array.from(checkboxes)
+            .filter(cb => cb.checked)
+            .map(cb => parseInt(cb.value))
+            .filter(cb => cb >= 0);
+        if(!selectedIndexes.includes(0)) selectedIndexes.unshift(0);
+        filteredData.headers = selectedIndexes.map(index => globalData.headers[index]);
+        filteredData.records = getSelectedRecords(recordSelect.value, selectedIndexes);
+        if(currentSort.column > filteredData.headers.length) currentSort.column = null;
+        renderTable(filteredData.records);
+        dropdown.classList.remove('open');
+        if (searchInput.value !== '') searchInput.value = '';
     });
 
     checkboxes.forEach(checkbox => {

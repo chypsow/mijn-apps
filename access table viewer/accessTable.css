@@ -56,12 +56,12 @@ header {
     background-color: rgb(39, 39, 39);
     color: white;
 }
-.zoek-plek {
+.flex-container {
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
-.aantal-records {
+.span-container {
     align-content: center;
     color: #f9f9f9;
 }

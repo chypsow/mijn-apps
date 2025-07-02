@@ -12,10 +12,13 @@
   </header>
   
   <div class="fields">
-    <label class="custom-file-label">
-      Kies een bestand
-      <input type="file" id="fileInput" style="display:none;">
-    </label>
+    <div class="flex-container">
+      <label class="custom-file-label">
+        Kies een bestand
+        <input type="file" id="fileInput" style="display:none;">
+      </label>
+      <span id="fileNaam" class="span-container"></span>
+    </div>
 
     <div class="dropdown" id="dropdown" style="visibility: hidden;">
       <button class="dropdown-button" id="dropdownButton">Headers filteren</button>
@@ -27,9 +30,9 @@
       </div>
     </div>
 
-    <label class="zoek-plek">
+    <label class="flex-container">
       <input type="text" id="searchInput" placeholder="Zoek in tabel..." autocomplete="off" style="visibility: hidden;"/>
-      <span id="aantal-records" class="aantal-records"></span>
+      <span id="aantal-records" class="span-container"></span>
     </label>
     
     <select id="records-select" style="visibility: hidden;"></select>
