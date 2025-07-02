@@ -1,3 +1,26 @@
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    header, .fields, .flex-container {
+        background: none !important;
+        color: black !important;
+        box-shadow: none !important;
+    }
+    table {
+        background: white !important;
+        color: black !important;
+    }
+    th, td {
+        background: white !important;
+        color: black !important;
+        border-color: #888 !important;
+    }
+}
 * {
     margin: 0;
     padding: 0;
