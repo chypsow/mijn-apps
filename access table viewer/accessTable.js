@@ -198,6 +198,8 @@ document.getElementById('records-select').addEventListener('change', () => {
     } else {
         renderTable(filteredData.records);
     }
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput.value !== '') searchInput.value = '';
 });
     
 document.getElementById('searchInput').addEventListener('input', function () {
